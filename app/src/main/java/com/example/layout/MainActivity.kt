@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.layout.adapter.InfoAndTagAdapter
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.layout.adapter.InfoAdapter
+import com.example.layout.adapter.TagAdapter
 import com.example.layout.adapter.ViewPagerAdapter
 import com.example.layout.databinding.ActivityMainBinding
 import com.example.layout.databinding.CustomTablayoutBinding
@@ -19,24 +21,34 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
     private lateinit var mainActivityBinding: ActivityMainBinding
     private lateinit var customTablayoutBinding: CustomTablayoutBinding
-    private lateinit var adapter: InfoAndTagAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivityBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainActivityBinding.root)
-        adapter = InfoAndTagAdapter()
-
-        val layoutManager = FlexboxLayoutManager(this).apply {
-                    flexDirection = FlexDirection.ROW
-                    justifyContent = JustifyContent.FLEX_START
-        }
-        mainActivityBinding.rcvInfoOrCategory.layoutManager = layoutManager
-        adapter.setData(getList())
-        mainActivityBinding.rcvInfoOrCategory.adapter = adapter
+        displayListInfo()
+        displayListTag()
         setUpTabLayout()
 
 
+    }
+
+    private fun displayListInfo(){
+        val infoAdapter = InfoAdapter(getListInfo())
+        val layoutManager = GridLayoutManager(this,3)
+        mainActivityBinding.rcvInfo.layoutManager = layoutManager
+        mainActivityBinding.rcvInfo.adapter = infoAdapter
+    }
+
+    private fun displayListTag(){
+        val tagAdapter = TagAdapter(getListTag())
+
+        val layoutManager = FlexboxLayoutManager(this).apply {
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.FLEX_START
+        }
+        mainActivityBinding.rcvTag.layoutManager = layoutManager
+        mainActivityBinding.rcvTag.adapter = tagAdapter
     }
     private fun setUpTabLayout(){
         mainActivityBinding.viewAdapter.adapter = ViewPagerAdapter(this)
@@ -76,8 +88,8 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
-    private fun getList(): List<Any> {
-        val list: MutableList<Any> = mutableListOf()
+    private fun getListInfo(): List<Info> {
+        val list: MutableList<Info> = mutableListOf()
         list.add(Info("Chi tiêu TB", "3,3 Tr"))
         list.add(Info("Tỉ lệ chốt", "30%"))
         list.add(Info("Tốc độ chốt", "4 bánh"))
@@ -85,6 +97,11 @@ class MainActivity : AppCompatActivity() {
         list.add(Info("Chu kì mua", "19 ngày"))
         list.add(Info("Tỷ lệ matching", "90%"))
 
+        return list
+    }
+
+    private fun getListTag() : List<String>{
+        val list: MutableList<String> = mutableListOf()
         list.add("#Thích bảo hành")
         list.add("#Thích đủ thứ")
         list.add("#Thích đủ giao nhanh")
