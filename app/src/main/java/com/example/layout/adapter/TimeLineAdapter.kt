@@ -18,6 +18,7 @@ class TimeLineAdapter(private val timeLine : List<TimeLineUser>, private val con
             val spannableString = SpannableString(timeLine.title)
             val redColor = ContextCompat.getColor(context, R.color.green)
             spannableString.setSpan(ForegroundColorSpan(redColor), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            spannableString.setSpan(StyleSpan(Typeface.BOLD), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             timeLineBinding.tvTime.text = timeLine.date.toString()
             timeLineBinding.tvTitle.text = spannableString
         }
