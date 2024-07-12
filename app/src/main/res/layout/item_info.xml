@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/define_dimen_120"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/define_dimen_8"
+    app:cardCornerRadius="@dimen/define_dimen_6">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_grey"
+        android:orientation="vertical"
+        android:padding="@dimen/define_dimen_10">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tahoma"
+            android:textColor="@color/text_grey"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/define_dimen_6"
+            android:fontFamily="@font/tahoma"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <ImageView
+            android:id="@+id/ivIncrease"
+            android:layout_width="@dimen/define_dimen_12"
+            android:layout_height="@dimen/define_dimen_12"
+            android:layout_marginStart="@dimen/define_dimen_4"
+            android:src="@drawable/ic_increase"
+            app:layout_constraintBottom_toBottomOf="@id/tvValue"
+            app:layout_constraintStart_toEndOf="@id/tvValue"
+            app:layout_constraintTop_toTopOf="@+id/tvValue"
+            app:tint="@color/green" />
+
+        <TextView
+            android:id="@+id/tvPercentIncreased"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/define_dimen_2"
+            android:fontFamily="@font/tahoma"
+            android:text="vvvv"
+            android:textColor="@color/green"
+            android:textSize="@dimen/text_size_xsmall"
+            app:layout_constraintBottom_toBottomOf="@id/tvValue"
+            app:layout_constraintStart_toEndOf="@id/ivIncrease"
+            app:layout_constraintTop_toTopOf="@id/tvValue" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
